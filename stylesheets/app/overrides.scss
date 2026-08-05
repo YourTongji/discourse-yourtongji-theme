@@ -297,9 +297,13 @@
   .card-content {
     padding: var(--mf-space-5);
     border-radius: inherit;
+
+    /* Keep the content area translucent enough that the user's card
+       background image (set inline by core JS) shows through; 88% was
+       effectively hiding it. */
     background: color-mix(
       in srgb,
-      var(--secondary) 88%,
+      var(--secondary) 70%,
       transparent
     ) !important;
   }
