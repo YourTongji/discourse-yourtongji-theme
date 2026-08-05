@@ -1,25 +1,40 @@
-/* YourTongji discovery chrome layout for Discourse 3.5 connectors.
- * Hero sits above the list; info rail docks to the right on wide screens.
- * Avoid empty grid tracks / display:contents traps that left gray placeholders
- * when Blocks failed to render.
+/* YourTongji discovery layout for the official Blocks API (Discourse 2026).
+ * Hero renders into `main-outlet-blocks`; the info rail renders into the
+ * core `sidebar-discovery` outlet, which Discourse lays out in a two-column
+ * discovery grid on wide screens.
  */
 
-.yt-discovery-chrome {
-  display: block;
-  width: 100%;
-  margin: 0 0 var(--mf-space-4);
-}
-
-.yt-hero,
 .block-hero {
   width: 100%;
 }
 
-.yt-info-rail {
-  display: none;
+/* Wide discovery: list + sticky info rail (core outlet classes) */
+.discovery-layout__content {
+  &:has(.sidebar-discovery) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(230px, 290px);
+    column-gap: var(--mf-space-8);
+    align-items: start;
+  }
+
+  &__sidebar {
+    min-width: 0;
+    margin-block: 0;
+  }
 }
 
-.yt-info-rail__inner {
+.sidebar-discovery {
+  &__layout {
+    display: flex;
+    flex-direction: column;
+    gap: var(--mf-space-4);
+  }
+}
+
+/* Info rail card wrapper (blocks render inside .sidebar-discovery__layout) */
+.block-rail {
+  position: sticky;
+  top: calc(var(--d-header-height, 64px) + var(--mf-space-4));
   display: flex;
   flex-direction: column;
   gap: var(--mf-space-5);
@@ -27,64 +42,6 @@
   background: var(--yt-card);
   border: 1px solid color-mix(in srgb, var(--yt-border) 50%, transparent);
   border-radius: var(--mf-radius-xl);
-}
-
-/* Wide discovery: two-column list + sticky rail */
-@media (width >= 1100px) {
-  /* Only when the rail is actually shown (avoids empty second track) */
-  .list-container:has(.yt-info-rail) {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(220px, 276px);
-    column-gap: var(--mf-space-8);
-    align-items: start;
-  }
-
-  .list-container:has(.yt-info-rail) > .yt-discovery-chrome,
-  .list-container:has(.yt-info-rail) > .discovery-list-container-top-outlet,
-  .list-container:has(.yt-info-rail) > .ember-view:has(> .yt-discovery-chrome) {
-    display: contents;
-  }
-
-  .list-container:has(.yt-info-rail) .yt-hero,
-  .list-container:has(.yt-info-rail) .block-hero {
-    grid-column: 1 / -1;
-    grid-row: 1;
-  }
-
-  .list-container:has(.yt-info-rail) .yt-info-rail {
-    display: block;
-    grid-column: 2;
-    grid-row: 2 / span 50;
-    align-self: start;
-  }
-
-  .list-container:has(.yt-info-rail) .yt-info-rail__inner {
-    position: sticky;
-    top: calc(var(--d-header-height, 64px) + var(--mf-space-4));
-  }
-
-  /* Keep navigation controls and topic list in the main column */
-  .list-container:has(.yt-info-rail) > .contents,
-  .list-container:has(.yt-info-rail) > .list-controls,
-  .list-container:has(.yt-info-rail) > .container,
-  .list-container:has(.yt-info-rail) > .topic-list,
-  .list-container:has(.yt-info-rail)
-    > div:not(.yt-discovery-chrome, :has(> .yt-discovery-chrome)) {
-    grid-column: 1;
-  }
-
-  /* Prevent empty promoted wrappers from painting ghost gray tracks */
-  .list-container:has(.yt-info-rail) > .ember-view:empty,
-  .list-container:has(.yt-info-rail) > div:empty,
-  .list-container:has(.yt-info-rail) .yt-discovery-chrome:empty {
-    display: none !important;
-  }
-}
-
-@media (width <= 1099px) {
-  .yt-info-rail {
-    display: none !important;
-  }
 }
 
 /* Hide empty outlet shells that can look like gray misaligned blocks */
@@ -95,21 +52,6 @@
   margin: 0 !important;
   padding: 0 !important;
   min-height: 0 !important;
-}
-
-/* Do not leave ghost tracks from old Blocks discovery layout */
-.discovery-layout,
-.sidebar-discovery,
-.sidebar-discovery__container,
-.sidebar-discovery__layout,
-.sidebar-discovery__block-container {
-  display: contents;
-  min-height: 0;
-  height: auto;
-  background: transparent;
-  border: 0;
-  padding: 0;
-  margin: 0;
 }
 
 /* End-of-list / loading ghosts under the topic feed */
@@ -137,7 +79,6 @@
     border: 0 !important;
     box-shadow: none !important;
 
-    /* Hide barren wrappers that still paint a gray pill */
     > div:empty,
     > span:empty,
     > p:empty {

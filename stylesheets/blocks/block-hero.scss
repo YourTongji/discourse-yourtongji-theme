@@ -140,7 +140,7 @@ body.welcome-banner--visible .above-main-container-outlet {
     }
   }
 
-  @media (width <= 767px) {
+  @include viewport.until(md) {
     padding: var(--mf-space-5);
 
     &__inner {
@@ -153,7 +153,7 @@ body.welcome-banner--visible .above-main-container-outlet {
     }
   }
 
-  @media (width <= 639px) {
+  @include viewport.until(sm) {
     box-sizing: border-box;
     width: 100%;
     max-width: 100%;
