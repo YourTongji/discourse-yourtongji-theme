@@ -14,6 +14,14 @@ body,
   background: var(--mf-app-bg);
 }
 
+/* Page-level overflow guard: any transient wide element (long URLs,
+   nowrap metrics, wide tables) must never create a horizontal scrollbar. */
+
+html,
+body {
+  overflow-x: clip;
+}
+
 .list-container .container,
 .contents {
   .alert {
@@ -35,11 +43,6 @@ html .loading-indicator {
 .list-controls,
 .contents > .container {
   border: none;
-}
-
-/* yourtongji-platform-layout */
-#main-outlet {
-  max-width: calc(var(--mf-content-width) + 300px);
 }
 
 body.has-sidebar-page #main-outlet-wrapper {

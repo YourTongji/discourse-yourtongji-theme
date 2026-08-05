@@ -5,7 +5,7 @@ import AsyncContent from "discourse/components/async-content";
 import { bind } from "discourse/lib/decorators";
 import { ajax } from "discourse/lib/ajax";
 import dIcon from "discourse/helpers/d-icon";
-import { concat } from "@ember/helper";
+import { add, concat } from "@ember/helper";
 import { getOwner } from "@ember/application";
 import { i18n } from "discourse-i18n";
 
@@ -42,6 +42,14 @@ export default class BlockYtInfoRail extends Component {
 
   get tagsTitle() {
     return i18n(themePrefix("rail.tags_title"));
+  }
+
+  get hotTitle() {
+    return i18n(themePrefix("rail.hot_title"));
+  }
+
+  get hotLinkLabel() {
+    return i18n(themePrefix("rail.hot_link"));
   }
 
   get allTagsLabel() {
@@ -142,6 +150,17 @@ export default class BlockYtInfoRail extends Component {
     ];
   }
 
+  @bind
+  async fetchHotTopics() {
+    const data = await ajax("/top.json", { data: { period: "weekly" } });
+    const topics = data?.topic_list?.topics || [];
+    return topics.slice(0, 5).map((topic) => ({
+      title: topic.title,
+      href: `/t/${topic.slug}/${topic.id}`,
+      heat: topic.like_count ?? topic.posts_count ?? 0,
+    }));
+  }
+
   <template>
     <div class="block-rail">
       <div class="block-rail-cta">
@@ -180,6 +199,41 @@ export default class BlockYtInfoRail extends Component {
           </div>
         </div>
       {{/if}}
+
+      <AsyncContent @asyncData={{this.fetchHotTopics}}>
+        <:loading><div class="spinner" /></:loading>
+        <:empty></:empty>
+        <:content as |topics|>
+          {{#if topics.length}}
+            <div class="block-rail-hot">
+              <h4 class="block-rail-hot__title">
+                {{dIcon "flame"}}
+                <span>{{this.hotTitle}}</span>
+              </h4>
+              <ol class="block-rail-hot__list">
+                {{#each topics as |topic index|}}
+                  <li class="block-rail-hot__item">
+                    <span class="block-rail-hot__rank">{{add index 1}}</span>
+                    <a class="block-rail-hot__topic" href={{topic.href}}>
+                      <span class="block-rail-hot__title-text">
+                        {{topic.title}}
+                      </span>
+                      <span class="block-rail-hot__heat">
+                        {{dIcon "flame"}}
+                        {{topic.heat}}
+                      </span>
+                    </a>
+                  </li>
+                {{/each}}
+              </ol>
+              <a class="block-rail-hot__all" href="/top">
+                <span>{{this.hotLinkLabel}}</span>
+                {{dIcon "arrow-right"}}
+              </a>
+            </div>
+          {{/if}}
+        </:content>
+      </AsyncContent>
 
       <AsyncContent @asyncData={{this.fetchPulse}}>
         <:loading><div class="spinner" /></:loading>

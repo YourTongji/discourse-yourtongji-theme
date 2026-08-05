@@ -73,6 +73,14 @@ body.welcome-banner--visible .above-main-container-outlet {
     }
   }
 
+  @include viewport.until(md) {
+    padding: var(--mf-space-5) var(--mf-space-2) var(--mf-space-3);
+
+    &__search {
+      max-width: none;
+    }
+  }
+
   @include viewport.until(sm) {
     padding: var(--mf-space-4) 0 var(--mf-space-3);
 

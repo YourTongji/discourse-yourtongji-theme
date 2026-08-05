@@ -9,6 +9,8 @@ zh_CN:
     pulse_title: "社区动态"
     online_title: "当前在线"
     tags_title: "热门标签"
+    hot_title: "今日热榜"
+    hot_link: "查看全部"
     all_tags: "全部标签"
     links_title: "快捷入口"
     posts_today: "今日帖子"

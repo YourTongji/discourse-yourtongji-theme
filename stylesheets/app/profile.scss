@@ -517,12 +517,16 @@
   box-shadow: none !important;
 }
 
-.user-main > .about .user-profile-image {
+.user-main > .about.has-background .user-profile-image {
   position: relative;
   height: clamp(180px, 22vw, 240px) !important;
   background-position: center;
   background-size: cover;
   border-radius: 0 !important;
+}
+
+.user-main > .about:not(.has-background) .user-profile-image {
+  display: none !important;
 }
 
 .user-main > .about .details,
@@ -657,8 +661,12 @@
     border-radius: var(--mf-radius-lg);
   }
 
-  .user-main > .about .user-profile-image {
+  .user-main > .about.has-background .user-profile-image {
     height: 144px !important;
+  }
+
+  .user-main > .about:not(.has-background) .user-profile-image {
+    display: none !important;
   }
 
   .user-main > .about .details,

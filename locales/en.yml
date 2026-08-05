@@ -9,6 +9,8 @@ en:
     pulse_title: "Community pulse"
     online_title: "Online now"
     tags_title: "Popular tags"
+    hot_title: "Today's hot topics"
+    hot_link: "See all"
     all_tags: "All tags"
     links_title: "Quick links"
     posts_today: "posts today"

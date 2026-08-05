@@ -1115,13 +1115,22 @@ a.discourse-tag.box,
     width: auto !important;
     max-width: max-content !important;
     margin: 0 !important;
-    margin-inline-end: 14px !important;
-    padding: 2px 0 0 !important;
+    margin-inline-end: 6px !important;
+    padding: 6px 10px !important;
     border-top: 0 !important;
     color: var(--mf-ink-3) !important;
     font-size: 12px !important;
     line-height: 1.2 !important;
     white-space: nowrap !important;
+    border-radius: var(--mf-radius-md) !important;
+    transition:
+      background var(--mf-dur-fast) var(--mf-ease),
+      color var(--mf-dur-fast) var(--mf-ease);
+
+    &:hover {
+      background: var(--yt-hover) !important;
+      color: var(--mf-ink) !important;
+    }
 
     &::before {
       content: "" !important;
@@ -1162,12 +1171,21 @@ a.discourse-tag.box,
     width: auto !important;
     max-width: max-content !important;
     margin: 0 !important;
-    padding: 2px 0 0 !important;
+    padding: 6px 10px !important;
     border-top: 0 !important;
     color: var(--mf-ink-3) !important;
     font-size: 12px !important;
     line-height: 1.2 !important;
     white-space: nowrap !important;
+    border-radius: var(--mf-radius-md) !important;
+    transition:
+      background var(--mf-dur-fast) var(--mf-ease),
+      color var(--mf-dur-fast) var(--mf-ease);
+
+    &:hover {
+      background: var(--yt-hover) !important;
+      color: var(--mf-ink) !important;
+    }
 
     &::before {
       content: "" !important;
@@ -1260,32 +1278,43 @@ a.discourse-tag.box,
   }
 }
 
-/* Navigation tabs under hero — Platform Tabs style */
+/* Navigation tabs under hero — Platform Tabs style (underline like
+   YourTJ-Platform CommunityFeed tabs: transparent pill, 2px accent underline) */
+
 .list-controls .nav-pills,
 .navigation-container .nav-pills,
 .navigation-controls .nav-pills {
   gap: 4px;
+  padding-bottom: 1px;
 }
 
 .list-controls .nav-pills > li > a,
 .navigation-container .nav-pills > li > a {
-  border-radius: var(--mf-radius-md);
+  border-radius: var(--mf-radius-md) var(--mf-radius-md) 0 0;
   min-height: 34px;
-  padding: 6px 12px;
+  padding: 6px 10px;
   font-weight: 500;
   color: var(--mf-ink-3);
   background: transparent;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition:
+    color var(--mf-dur-fast) var(--mf-ease),
+    border-color var(--mf-dur-fast) var(--mf-ease),
+    background-color var(--mf-dur-fast) var(--mf-ease);
 
   &.active,
   &.active:hover {
     color: var(--mf-accent);
-    background: var(--yt-muted);
+    background: transparent;
+    border-bottom-color: var(--mf-accent);
     font-weight: 600;
   }
 
   &:hover:not(.active) {
     color: var(--mf-ink);
-    background: var(--yt-hover);
+    background: transparent;
+    border-bottom-color: color-mix(in srgb, var(--yt-primary) 30%, transparent);
   }
 }
 

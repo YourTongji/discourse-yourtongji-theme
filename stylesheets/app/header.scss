@@ -178,3 +178,47 @@
     }
   }
 }
+
+/* Small phones (<=640px): tighten the header so 360px screens stay tidy */
+@include viewport.until(sm) {
+  .d-header {
+    --d-header-padding-x: var(--mf-space-2);
+
+    .wrap {
+      padding-inline: var(--mf-space-2);
+    }
+
+    .title {
+      padding-right: var(--mf-space-2);
+
+      #site-text-logo {
+        font-size: var(--mf-text-base);
+      }
+
+      img#site-logo,
+      .logo-big {
+        max-height: 28px;
+      }
+    }
+
+    .d-header-icons {
+      gap: 2px;
+
+      .icon {
+        width: 34px;
+        height: 34px;
+      }
+    }
+
+    .header-sidebar-toggle .btn,
+    .d-header-icons .icon,
+    .header-dropdown-toggle .icon {
+      min-width: 34px;
+      min-height: 34px;
+    }
+
+    .floating-search-input-wrapper {
+      display: none;
+    }
+  }
+}

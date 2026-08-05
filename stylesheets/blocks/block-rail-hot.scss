@@ -1,0 +1,137 @@
+/* YourTJ-Platform "今日热榜" (Hot Topics) card in the discovery rail */
+.block-rail-hot {
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 var(--mf-space-3);
+    color: var(--mf-ink);
+    font-size: var(--mf-text-sm);
+    font-weight: var(--mf-weight-semibold);
+
+    .d-icon {
+      color: var(--mf-accent);
+      font-size: var(--mf-text-base);
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    counter-reset: hot-rank;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    padding: 5px 0;
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--yt-border) 45%, transparent);
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  &__rank {
+    flex: 0 0 18px;
+    width: 18px;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--mf-radius-sm);
+    color: var(--mf-ink-3);
+    font-size: var(--mf-text-xs);
+    font-weight: var(--mf-weight-semibold);
+    font-variant-numeric: tabular-nums;
+    background: var(--mf-fill-hover);
+  }
+
+  /* Top-3 ranks take the accent, mirroring the platform */
+  &__item:nth-child(1) &__rank,
+  &__item:nth-child(2) &__rank,
+  &__item:nth-child(3) &__rank {
+    color: var(--mf-accent);
+    background: var(--mf-accent-tint-soft);
+  }
+
+  &__topic {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    color: var(--mf-ink-2);
+    text-decoration: none;
+    transition: color var(--mf-dur-fast) var(--mf-ease);
+
+    &:hover {
+      color: var(--mf-accent);
+
+      .block-rail-hot__title-text {
+        color: var(--mf-accent);
+      }
+    }
+  }
+
+  &__title-text {
+    min-width: 0;
+    overflow: hidden;
+    font-size: var(--mf-text-xs);
+    font-weight: var(--mf-weight-medium);
+    line-height: 1.4;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: inherit;
+    transition: color var(--mf-dur-fast) var(--mf-ease);
+  }
+
+  &__heat {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    color: var(--mf-ink-faint);
+    font-size: var(--mf-text-2xs);
+    font-variant-numeric: tabular-nums;
+
+    .d-icon {
+      color: color-mix(in srgb, var(--mf-accent) 70%, transparent);
+      font-size: 10px;
+    }
+  }
+
+  &__all {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: var(--mf-space-3);
+    color: var(--mf-accent);
+    font-size: var(--mf-text-sm);
+    font-weight: var(--mf-weight-medium);
+    transition: color var(--mf-dur-fast) var(--mf-ease);
+
+    .d-icon {
+      width: 13px;
+      height: 13px;
+      color: inherit;
+      transition: translate var(--mf-dur-fast) var(--mf-ease);
+    }
+
+    &:hover {
+      color: var(--mf-accent-hover);
+
+      .d-icon {
+        translate: 2px 0;
+      }
+    }
+  }
+}

@@ -17,7 +17,7 @@ export default apiInitializer((api) => {
           name: "show_info_rail",
           enabled: true,
         },
-        { type: "viewport", min: "lg" },
+        { type: "viewport", min: "xl" },
         {
           any: [
             { type: "route", pages: ["HOMEPAGE"] },
