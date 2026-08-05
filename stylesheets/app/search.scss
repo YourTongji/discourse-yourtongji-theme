@@ -117,7 +117,6 @@
 
 /* yourtongji-platform-search */
 .search-menu .search-input,
-.search-container .search-bar,
 .fps-search-input {
   border-radius: var(--mf-radius-pill) !important;
   border: 1px solid var(--yt-input) !important;
@@ -133,6 +132,21 @@
   }
 }
 
+/* Full search page bar: keep the container neutral like flat-theme;
+   children (input / type select / button) carry their own rounded
+   surfaces instead of one giant pill wrapping the whole grid. */
+
+.search-container .search-bar {
+  border-radius: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+
+  &:focus-within {
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+}
+
 .fps-result {
   border-radius: var(--mf-radius-xl);
   border: 1px solid transparent;
@@ -142,5 +156,41 @@
   &:hover {
     background: var(--yt-hover);
     border-color: color-mix(in srgb, var(--yt-primary) 20%, var(--yt-border));
+  }
+}
+
+/* Mobile search page: input full-width on its own row, type select and
+   button sharing a second row, all with one consistent radius */
+@include viewport.until(md) {
+  .search-container .search-bar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--mf-space-2);
+    padding: 0 !important;
+    overflow: visible !important;
+
+    .search-query {
+      grid-column: 1 / -1;
+      width: 100% !important;
+      min-height: 44px;
+      border-radius: var(--mf-radius-md) !important;
+    }
+
+    .select-kit {
+      grid-column: 1;
+      min-width: 0;
+    }
+
+    .select-kit .select-kit-header {
+      min-height: 40px;
+      border-radius: var(--mf-radius-md) !important;
+    }
+
+    .search-cta {
+      grid-column: 2;
+      min-height: 40px;
+      padding-inline: var(--mf-space-4);
+      border-radius: var(--mf-radius-md) !important;
+    }
   }
 }

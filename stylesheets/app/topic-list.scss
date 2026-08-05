@@ -1342,15 +1342,16 @@ a.discourse-tag.box,
   }
 
   .topic-item-stats {
+    order: -1 !important;
     display: flex !important;
-    flex-wrap: wrap !important;
+    flex-wrap: nowrap !important;
     align-items: center !important;
     gap: 6px !important;
     width: 100% !important;
     min-width: 0 !important;
-    margin: 6px 0 0 !important;
-    padding: 10px 0 0 !important;
-    border-top: 1px solid color-mix(in srgb, var(--yt-border) 70%, transparent) !important;
+    margin: 0 !important;
+    padding: 0 36px 0 0 !important;
+    border-top: 0 !important;
     color: var(--mf-ink-3) !important;
     font-size: 12px !important;
 
@@ -1359,10 +1360,12 @@ a.discourse-tag.box,
       flex: 0 0 auto !important;
       display: inline-flex !important;
       align-items: center !important;
-      gap: 6px !important;
+      gap: 5px !important;
       margin-left: auto !important;
-      padding: 4px 8px !important;
-      border-radius: var(--mf-radius-md) !important;
+      padding: 0 !important;
+      border-radius: 0 !important;
+      color: var(--mf-ink-faint) !important;
+      font-size: 11px !important;
     }
 
     .topic-item-stats__category-tags {
