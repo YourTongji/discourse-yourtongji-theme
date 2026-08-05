@@ -1,3 +1,10 @@
+/* Nested replies (embedded posts) tree.
+ * Base follows flat-theme's compact rows, plus tree affordances:
+ * a connection line under the avatar column, per-level indent with a
+ * soft left border, pill collapse/toggle buttons and avatar rings so
+ * replies read as a hierarchy instead of a flat blob inside the card.
+ */
+
 body.archetype-regular .post-stream .post__embedded-posts.embedded-posts {
   width: 100%;
   margin: 4px 0 var(--mf-space-2);
@@ -7,8 +14,35 @@ body.archetype-regular .post-stream .post__embedded-posts.embedded-posts {
   border-radius: 0;
   box-shadow: none !important;
 
-  .post__collapse-button.collapse-up {
-    display: none !important;
+  /* Collapse / toggle buttons — pill, accent, matching load-more */
+  .post__collapse-button,
+  .toggle-replies {
+    position: static !important;
+    inset: auto !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: max-content;
+    min-height: 28px;
+    margin: 6px 0 2px 52px;
+    padding: 4px 10px;
+    color: var(--mf-accent);
+    font-size: var(--mf-text-xs);
+    font-weight: var(--mf-weight-semibold);
+    line-height: 18px;
+    background: var(--mf-accent-tint-soft);
+    border: 0;
+    border-radius: var(--mf-radius-pill);
+    transform: none !important;
+    transition:
+      background var(--mf-dur-fast) var(--mf-ease),
+      color var(--mf-dur-fast) var(--mf-ease);
+
+    &:hover {
+      color: var(--mf-accent-hover);
+      background: var(--mf-fill-selected);
+    }
   }
 
   .load-more-replies {
@@ -53,7 +87,18 @@ body.archetype-regular .post-stream .post__embedded-posts.embedded-posts {
       background: transparent !important;
       border: 0 !important;
 
-      &::before,
+      /* Connection line: hangs from under the avatar column, top level */
+      &::before {
+        content: "";
+        position: absolute;
+        left: 39px;
+        top: 42px;
+        bottom: -4px;
+        width: 1px;
+        background: color-mix(in srgb, var(--yt-border) 75%, transparent);
+      }
+
+      /* Kill core's default decorative pseudo elements we do not use */
       &::after {
         display: none !important;
         content: none !important;
@@ -79,6 +124,10 @@ body.archetype-regular .post-stream .post__embedded-posts.embedded-posts {
       .avatar {
         width: 40px;
         height: 40px;
+        border-radius: var(--mf-radius-pill);
+        border: 2px solid color-mix(in srgb, var(--yt-primary) 45%, transparent);
+        box-sizing: border-box;
+        background: var(--yt-popover);
       }
     }
 
@@ -142,6 +191,7 @@ body.archetype-regular .post-stream .post__embedded-posts.embedded-posts {
       margin: 2px 0 0;
       padding: 4px 0 0;
       color: var(--mf-ink-2);
+      font-size: var(--mf-text-md);
       line-height: 1.5;
 
       p {
@@ -152,6 +202,25 @@ body.archetype-regular .post-stream .post__embedded-posts.embedded-posts {
         margin-bottom: 0;
       }
     }
+
+    /* Deeper levels: indent + soft left rail so depth is readable */
+    .post__embedded-posts.embedded-posts {
+      margin: 6px 0 0 20px;
+      padding: 2px 0 2px 12px;
+      border-left: 1px solid
+        color-mix(in srgb, var(--yt-border) 55%, transparent);
+      border-radius: 0 var(--mf-radius-lg) var(--mf-radius-lg) 0;
+      background: color-mix(in srgb, var(--yt-card) 55%, transparent);
+
+      /* Connection line only on the top level; rails carry depth below */
+      > .reply > .row::before {
+        content: none;
+      }
+
+      .post__embedded-posts.embedded-posts {
+        margin-left: 14px;
+      }
+    }
   }
 }
 
@@ -159,7 +228,9 @@ body.archetype-regular .post-stream .post__embedded-posts.embedded-posts {
   body.archetype-regular .post-stream .post__embedded-posts.embedded-posts {
     margin-block: 2px var(--mf-space-2);
 
-    .load-more-replies {
+    .load-more-replies,
+    .post__collapse-button,
+    .toggle-replies {
       margin-left: 43px;
     }
 
@@ -172,6 +243,11 @@ body.archetype-regular .post-stream .post__embedded-posts.embedded-posts {
         grid-template-columns: 34px minmax(0, 1fr);
         column-gap: 9px;
         padding-block: 7px 9px;
+
+        &::before {
+          left: 33px;
+          top: 38px;
+        }
       }
 
       .topic-avatar,
@@ -210,6 +286,11 @@ body.archetype-regular .post-stream .post__embedded-posts.embedded-posts {
       .cooked {
         padding-top: 3px;
         font-size: var(--mf-text-sm);
+      }
+
+      .post__embedded-posts.embedded-posts {
+        margin-left: 12px;
+        padding-left: 8px;
       }
     }
   }

@@ -494,7 +494,7 @@ body.admin-interface {
 
 .admin-nav ul li a.active,
 .admin-nav .nav-pills > li.active > a {
-  background: var(--yt-muted);
+  background: var(--mf-surface-3);
   color: var(--mf-accent);
   border-radius: var(--mf-radius-md);
 }
@@ -507,7 +507,20 @@ body.admin-interface {
 table.d-table,
 .admin-list,
 .dashboard-stats {
-  background: var(--yt-card);
+  background: var(--mf-surface-2);
   border: 1px solid color-mix(in srgb, var(--yt-border) 50%, transparent);
   border-radius: var(--mf-radius-lg);
+}
+
+/* Sidebar nav hover so inactive items still respond */
+.sidebar-section-link:hover:not(.active) {
+  color: var(--mf-ink);
+  background: var(--mf-fill-hover);
+}
+
+/* Hover affordance on config cards, mirroring topic cards */
+.admin-config-area-card:hover,
+.dashboard .panel:hover {
+  border-color: color-mix(in srgb, var(--yt-primary) 22%, var(--yt-border));
+  transition: border-color var(--mf-dur-fast) var(--mf-ease);
 }
