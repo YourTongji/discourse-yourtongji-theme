@@ -36,3 +36,33 @@ html .loading-indicator {
 .contents > .container {
   border: none;
 }
+
+/* yourtongji-platform-layout */
+#main-outlet {
+  max-width: calc(var(--mf-content-width) + 300px);
+}
+
+body.has-sidebar-page #main-outlet-wrapper {
+  background: var(--mf-app-bg);
+}
+
+.list-container {
+  max-width: 100%;
+}
+
+/* Kill residual gray skeleton / placeholder bars from broken theme shells */
+.placeholder-animation,
+.timeline-container
+  .timeline-scrollarea-wrapper
+  .timeline-scrollarea
+  .timeline-scroller-content
+  .timeline-replies
+  + .timeline-footer-controls:empty,
+.loading-container:empty {
+  min-height: 0;
+}
+
+.alert.alert-error.theme-error,
+div[class*="theme-error"]:empty {
+  display: none;
+}

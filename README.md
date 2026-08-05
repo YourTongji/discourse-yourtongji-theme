@@ -36,9 +36,11 @@ https://github.com/YourTongji/discourse-yourtongji-theme
 
 ### 兼容性说明
 
-- `about.json` 中 `minimum_discourse_version` 设为 `3.3.0`，便于兼容 Bitnami / 自建 3.x。
-- 部分 GJS `api.renderBlocks` 能力依赖较新的 Discourse 主题 API；若实例过旧，Hero / Info Rail 可能不显示，但 SCSS 壳层与列表样式仍会生效。
-- 安装到具体实例前，请在目标版本上预览 `/latest`、话题页、用户页与移动端。
+- 目标运行时：**Discourse 3.5.x**（含 Bitnami `bitnamilegacy/discourse:3.5.0`）。
+- `about.json` 中 `minimum_discourse_version` 为 **3.5.0**；`theme_version` 当前 **1.1.0**。
+- **不使用** Discourse 2026.6+ Blocks API（`api.renderBlocks` / `discourse/blocks` / `discourse/ui-kit`）。
+- Hero 与信息侧栏通过经典 **connector** `discovery-list-container-top` 注入，避免在 3.5 上触发管理员红条。
+- 安装后请预览 `/latest`、话题页、用户页与移动端；若仍见红条，打开浏览器控制台并把错误发回。
 
 ## 主题设置
 

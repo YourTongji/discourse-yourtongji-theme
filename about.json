@@ -5,8 +5,8 @@
   "license_url": "https://github.com/YourTongji/discourse-yourtongji-theme/blob/main/LICENSE",
   "learn_more": "https://github.com/YourTongji/discourse-yourtongji-theme#readme",
   "authors": "YourTongji",
-  "theme_version": "1.0.0",
-  "minimum_discourse_version": "3.3.0",
+  "theme_version": "1.1.0",
+  "minimum_discourse_version": "3.5.0",
   "maximum_discourse_version": null,
   "assets": {
     "icon": "assets/icon.png",
@@ -14,7 +14,13 @@
   },
   "modifiers": {
     "serialize_topic_excerpts": true,
-    "svg_icons": ["arrow-right", "fire", "magnifying-glass", "plus", "users"]
+    "svg_icons": [
+      "arrow-right",
+      "fire",
+      "magnifying-glass",
+      "plus",
+      "users"
+    ]
   },
   "color_schemes": {
     "YourTongji Light": {

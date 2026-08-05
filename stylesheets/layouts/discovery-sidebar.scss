@@ -1,41 +1,110 @@
-#main-outlet:has(.discovery-layout) {
-  display: flex;
-  flex-direction: column;
+/* YourTongji discovery chrome layout for Discourse 3.5 connectors.
+ * Hero sits above the list; info rail docks to the right on wide screens.
+ * Avoid empty grid tracks / display:contents traps that left gray placeholders
+ * when Blocks failed to render.
+ */
+
+.yt-discovery-chrome {
+  display: block;
+  width: 100%;
+  margin: 0 0 var(--mf-space-4);
 }
 
-.discovery-layout {
-  display: contents;
+.yt-hero,
+.block-hero {
+  width: 100%;
 }
 
-.discovery-layout__navigation {
-  order: -1;
+.yt-info-rail {
+  display: none;
 }
 
-.discovery-layout__content:has(.sidebar-discovery) {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(220px, 276px);
-  column-gap: var(--mf-space-8);
-}
-
-.sidebar-discovery,
-.sidebar-discovery__container {
-  height: 100%;
-}
-
-.sidebar-discovery__layout {
+.yt-info-rail__inner {
   display: flex;
   flex-direction: column;
   gap: var(--mf-space-5);
-  position: sticky;
-  top: calc(var(--d-header-height, 56px) + var(--mf-space-4));
   padding: var(--mf-space-4);
   background: var(--yt-card);
   border: 1px solid color-mix(in srgb, var(--yt-border) 50%, transparent);
   border-radius: var(--mf-radius-xl);
 }
 
+/* Wide discovery: two-column list + sticky rail */
+@media (width >= 1100px) {
+  body:has(.yt-info-rail) .list-container {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 276px);
+    column-gap: var(--mf-space-8);
+    align-items: start;
+  }
+
+  body:has(.yt-info-rail) .list-container > .yt-discovery-chrome,
+  body:has(.yt-info-rail)
+    .list-container
+    > .discovery-list-container-top-outlet,
+  body:has(.yt-info-rail)
+    .list-container
+    > .ember-view:has(> .yt-discovery-chrome) {
+    display: contents;
+  }
+
+  body:has(.yt-info-rail) .yt-hero,
+  body:has(.yt-info-rail) .block-hero {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  body:has(.yt-info-rail) .yt-info-rail {
+    display: block;
+    grid-column: 2;
+    grid-row: 2 / span 50;
+    align-self: start;
+  }
+
+  body:has(.yt-info-rail) .yt-info-rail__inner {
+    position: sticky;
+    top: calc(var(--d-header-height, 64px) + var(--mf-space-4));
+  }
+
+  /* Keep navigation controls and topic list in the main column */
+  body:has(.yt-info-rail) .list-container > .contents,
+  body:has(.yt-info-rail) .list-container > .list-controls,
+  body:has(.yt-info-rail) .list-container > .container,
+  body:has(.yt-info-rail) .list-container > .topic-list,
+  body:has(.yt-info-rail)
+    .list-container
+    > div:not(.yt-discovery-chrome, :has(> .yt-discovery-chrome)) {
+    grid-column: 1;
+  }
+}
+
+@media (width <= 1099px) {
+  .yt-info-rail {
+    display: none !important;
+  }
+}
+
+/* Hide empty outlet shells that can look like gray misaligned blocks */
+.discovery-list-container-top-outlet:empty,
+.above-main-container-outlet:empty,
+.below-site-header-outlet:empty {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 0 !important;
+}
+
+/* Do not leave ghost tracks from old Blocks discovery layout */
+.discovery-layout,
+.sidebar-discovery,
+.sidebar-discovery__container,
+.sidebar-discovery__layout,
 .sidebar-discovery__block-container {
-  display: flex;
-  flex-direction: column;
-  gap: var(--mf-space-5);
+  display: contents;
+  min-height: 0;
+  height: auto;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
 }

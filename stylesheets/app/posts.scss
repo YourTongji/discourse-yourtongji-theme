@@ -453,3 +453,26 @@ body.archetype-regular {
     color: var(--mf-love);
   }
 }
+
+/* yourtongji-platform-post-avatar */
+body.archetype-regular .post-stream > .topic-post .topic-avatar .avatar,
+body.archetype-regular .post-stream > .topic-post .post-avatar .avatar {
+  border: 2px solid color-mix(in srgb, var(--yt-primary) 45%, transparent) !important;
+  background: var(--yt-popover);
+  box-sizing: border-box;
+}
+
+body.archetype-regular .post-stream > .topic-post .cooked {
+  color: var(--mf-ink-2);
+  line-height: 1.65;
+  font-size: var(--mf-text-md);
+}
+
+body.archetype-regular
+  .post-stream
+  > .topic-post
+  .post-controls
+  .actions
+  button {
+  border-radius: var(--mf-radius-md);
+}
