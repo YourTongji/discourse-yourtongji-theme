@@ -298,12 +298,12 @@
     padding: var(--mf-space-5);
     border-radius: inherit;
 
-    /* Keep the content area translucent enough that the user's card
-       background image (set inline by core JS) shows through; 88% was
-       effectively hiding it. */
+    /* Translucent scrim so the user's card background image (set inline by
+       core JS) is clearly visible; 70% still washed it out. Text remains
+       readable thanks to the card's own darker surfaces behind it. */
     background: color-mix(
       in srgb,
-      var(--secondary) 70%,
+      var(--secondary) 45%,
       transparent
     ) !important;
   }
