@@ -1,15 +1,7 @@
 zh_CN:
   hero:
-    eyebrow: "YourTongji"
-    default_subtitle: "同济人自己的社区：讨论、分享、互助"
     search_placeholder: "搜索帖子、标签和用户"
     search_label: "搜索社区"
-    search_action: "搜索"
-    filters_label: "快捷筛选"
-    unread: "未读"
-    new_topics: "最新"
-    top_week: "本周热门"
-    unanswered: "待回复"
   rail:
     ask_title: "有问题？"
     ask_body: "发一个话题，社区会一起帮忙。"
@@ -27,11 +19,10 @@ zh_CN:
   theme_metadata:
     description: "YourTongji 主题 — 基于 YourTJ Platform 浅色设计语言的 Discourse 主题（茶绿强调色、卡片信息流、紧凑壳层）。"
     settings:
-      show_hero: "显示发现页 Hero（品牌、搜索、快捷筛选）。"
+      show_hero: "显示发现页居中搜索框。"
       show_info_rail: "在宽屏发现页显示信息侧栏（动态、标签、快捷链接）。"
       show_topic_excerpts: "在话题列表标题下显示摘要。"
       rail_links: "信息侧栏快捷链接。为空时使用默认链接。"
-      hero_subtitle: "Hero 标题下的副文案。"
       accent_color: "覆盖强调色（任意 CSS 颜色，如 #009688）。留空使用主题默认。"
       content_max_width: "主内容区最大宽度（像素）。"
       ui_radius: "全局圆角倍率（1 默认，0 直角，2 更圆）。"

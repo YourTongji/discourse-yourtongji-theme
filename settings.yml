@@ -31,10 +31,6 @@ rail_links:
         validations:
           max_length: 500
 
-hero_subtitle:
-  type: string
-  default: "同济人自己的社区：讨论、分享、互助"
-
 show_topic_excerpts:
   type: bool
   default: true

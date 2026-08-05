@@ -160,7 +160,6 @@
   @media (hover: hover) and (pointer: fine) {
     .btn,
     #navigation-bar > li > a,
-    .block-hero__chip,
     .block-rail-tags__tag,
     .category-boxes .category-box,
     .category-boxes-with-topics .category-box,
@@ -174,7 +173,6 @@
     }
 
     #navigation-bar > li > a:hover,
-    .block-hero__chip:hover,
     .block-rail-tags__tag:hover {
       transform: translateY(-1px);
     }
@@ -186,7 +184,6 @@
 
     .btn:active,
     #navigation-bar > li > a:active,
-    .block-hero__chip:active,
     .block-rail-tags__tag:active {
       scale: 0.985;
     }

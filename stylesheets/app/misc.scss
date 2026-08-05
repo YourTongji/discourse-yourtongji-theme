@@ -570,11 +570,6 @@ img.avatar {
 }
 
 @include viewport.until(sm) {
-  .block-hero__chips .block-hero__chip {
-    font-size: var(--mf-text-xs);
-    padding: 4px 9px;
-  }
-
   .topic-list .main-link a.title {
     font-size: var(--mf-text-base);
   }
