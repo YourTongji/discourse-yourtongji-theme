@@ -178,7 +178,9 @@
 /* yourtongji-platform-user-card */
 .user-card,
 .group-card {
-  background: var(--yt-popover) !important;
+  /* background-color only — the shorthand would wipe the card-background
+     image that core sets via inline style on the card root */
+  background-color: var(--yt-popover) !important;
   border: 1px solid var(--yt-border) !important;
   border-radius: var(--mf-radius-xl) !important;
   box-shadow: var(--shadow-dropdown) !important;
