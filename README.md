@@ -36,20 +36,21 @@ https://github.com/YourTongji/discourse-yourtongji-theme
 
 ### 兼容性说明
 
-- 目标运行时：**Discourse 3.5.x**（含 Bitnami `bitnamilegacy/discourse:3.5.0`）。
-- `about.json` 中 `minimum_discourse_version` 为 **3.5.0**；`theme_version` 当前 **1.1.0**。
-- **不使用** Discourse 2026.6+ Blocks API（`api.renderBlocks` / `discourse/blocks` / `discourse/ui-kit`）。
-- Hero 与信息侧栏通过经典 **connector** `discovery-list-container-top` 注入，避免在 3.5 上触发管理员红条。
-- 安装后请预览 `/latest`、话题页、用户页与移动端；若仍见红条，打开浏览器控制台并把错误发回。
+- 目标运行时：**Discourse 2026.6+**（官方 `discourse/discourse` 镜像，已实测 2026.7.1）。
+- `about.json` 中 `minimum_discourse_version` 为 **2026.6.0**；`theme_version` 当前 **1.2.0**。
+- 使用官方 **Blocks API**（`api.renderBlocks` / `discourse/blocks` / `@block` 装饰器）：
+  - Hero（居中搜索框）渲染到 `main-outlet-blocks`
+  - 信息侧栏（发帖 CTA / 今日热榜 / 社区动态 / 热门标签 / 快捷链接）渲染到 `sidebar-discovery`
+- 布局通过官方 `discovery-layout__content` 双栏 + `viewport` 条件（侧栏仅在 ≥1280px 显示）。
+- 页面级 `overflow-x: clip` 兜底，避免任何瞬时超宽元素产生横向滚动条。
 
 ## 主题设置
 
 | Setting | 说明 |
 | --- | --- |
-| `show_hero` | 发现页 Hero |
-| `show_info_rail` | 宽屏信息侧栏 |
+| `show_hero` | 发现页居中搜索框 |
+| `show_info_rail` | 宽屏（≥1280px）信息侧栏 |
 | `rail_links` | 侧栏快捷链接 |
-| `hero_subtitle` | Hero 副文案 |
 | `show_topic_excerpts` | 列表摘要 |
 | `accent_color` | 强调色覆盖（默认 `#009688`） |
 | `content_max_width` | 主栏最大宽度（默认 1280） |
