@@ -41,8 +41,14 @@ body.welcome-banner--visible .above-main-container-outlet {
 
     > .d-icon {
       flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
       color: var(--mf-ink-faint);
-      font-size: var(--mf-text-base);
+      font-size: 18px;
+      line-height: 1;
     }
 
     input {
@@ -51,6 +57,7 @@ body.welcome-banner--visible .above-main-container-outlet {
       padding: 11px 0;
       color: var(--mf-ink);
       font-size: var(--mf-text-base);
+      line-height: 1.25;
       background: transparent !important;
       border: 0 !important;
       box-shadow: none !important;
