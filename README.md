@@ -44,6 +44,26 @@ https://github.com/YourTongji/discourse-yourtongji-theme
 - 布局通过官方 `discovery-layout__content` 双栏 + `viewport` 条件（侧栏仅在 ≥1280px 显示）。
 - 页面级 `overflow-x: clip` 兜底，避免任何瞬时超宽元素产生横向滚动条。
 
+## 用户卡片背景（已知坑位，修复记录）
+
+Discourse 的用户卡片背景由 core 在**卡片根元素的内联 `background-image`** 上设置，
+主题必须满足三个条件背景图才可见：
+
+1. **匿名可见性**：`UserCardSerializer` 默认对 TL0 / 新用户（`hide_new_user_profiles`
+   开启时发帖少的用户）隐藏 `card_background_upload_url`。若发现"设置了背景但卡片
+   不显示"，先检查：
+   - 站点设置 `hide_new_user_profiles`（新用户对匿名隐藏资料）——私人论坛可关闭；
+   - 用户 `trust_level`；
+   - `allow_users_to_hide_profile` 与用户自身的隐藏资料选项。
+   - 若需对所有用户放开（含 TL0 匿名可见），可在服务器容器内给
+     `app/serializers/user_card_serializer.rb` 打最小补丁（参考仓库
+     `docs/server-patch` 与 runit 持久化脚本，容器重建后自动重打）。
+2. **不要用 `background` 简写 + `!important` 覆盖卡片根元素**：主题曾写
+   `background: var(--yt-popover) !important`，简写会重置 `background-image`
+   并把 core 的内联图覆盖为 `none`。现在只设 `background-color`。
+3. **内容区 scrim 不能太厚**：`.card-content` 曾用 70% 白（88% 更甚），背景图
+   几乎不可见；现为 **45%** 白，图片清晰可见且文字仍可读。
+
 ## 主题设置
 
 | Setting | 说明 |
