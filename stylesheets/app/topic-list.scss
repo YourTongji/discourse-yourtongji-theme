@@ -1110,12 +1110,12 @@ a.discourse-tag.box,
     align-self: center !important;
     display: inline-flex !important;
     align-items: center !important;
-    gap: 6px !important;
-    column-gap: 6px !important;
+    gap: 8px !important;
+    column-gap: 8px !important;
     width: auto !important;
     max-width: max-content !important;
     margin: 0 !important;
-    margin-inline-end: 0 !important;
+    margin-inline-end: 14px !important;
     padding: 2px 0 0 !important;
     border-top: 0 !important;
     color: var(--mf-ink-3) !important;
@@ -1129,7 +1129,7 @@ a.discourse-tag.box,
       flex: 0 0 14px !important;
       width: 14px !important;
       height: 14px !important;
-      margin: 0 !important;
+      margin: 0 2px 0 0 !important;
       background: currentcolor !important;
       mask: var(--mf-ic) center / 14px 14px no-repeat !important;
     }
@@ -1157,8 +1157,8 @@ a.discourse-tag.box,
     align-self: center !important;
     display: inline-flex !important;
     align-items: center !important;
-    gap: 6px !important;
-    column-gap: 6px !important;
+    gap: 8px !important;
+    column-gap: 8px !important;
     width: auto !important;
     max-width: max-content !important;
     margin: 0 !important;
@@ -1175,7 +1175,7 @@ a.discourse-tag.box,
       flex: 0 0 14px !important;
       width: 14px !important;
       height: 14px !important;
-      margin: 0 !important;
+      margin: 0 2px 0 0 !important;
       background: currentcolor !important;
       mask: var(--mf-ic) center / 14px 14px no-repeat !important;
     }
