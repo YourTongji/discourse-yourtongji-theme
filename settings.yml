@@ -1,0 +1,56 @@
+show_hero:
+  type: bool
+  default: true
+
+show_info_rail:
+  type: bool
+  default: true
+
+rail_links:
+  type: objects
+  default:
+    - label: "社区公告"
+      url: "/categories"
+    - label: "最新话题"
+      url: "/latest"
+    - label: "热门话题"
+      url: "/top"
+    - label: "收藏"
+      url: "/my/activity/bookmarks"
+  schema:
+    name: link
+    properties:
+      label:
+        type: string
+        required: true
+        validations:
+          max_length: 100
+      url:
+        type: string
+        required: true
+        validations:
+          max_length: 500
+
+hero_subtitle:
+  type: string
+  default: "同济人自己的社区：讨论、分享、互助"
+
+show_topic_excerpts:
+  type: bool
+  default: true
+
+accent_color:
+  type: string
+  default: ""
+
+content_max_width:
+  type: integer
+  default: 1280
+  min: 1040
+  max: 1600
+
+ui_radius:
+  type: float
+  default: 1.05
+  min: 0.0
+  max: 2.0

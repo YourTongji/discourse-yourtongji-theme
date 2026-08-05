@@ -1,0 +1,167 @@
+// YourTongji Theme design tokens
+// Source of truth: YourTJ-Platform/web/src/styles/index.css (light)
+// Dark scheme is intentionally not shipped in v1 (placeholder notes only).
+:root {
+  // --- Platform color aliases (light) ---
+  --yt-primary: #009688;
+  --yt-primary-foreground: #fff;
+  --yt-background: #f8faf8;
+  --yt-foreground: #191c1b;
+  --yt-card: #f2f4f2;
+  --yt-card-foreground: #191c1b;
+  --yt-popover: #fff;
+  --yt-muted: #eceeec;
+  --yt-muted-foreground: #596562;
+  --yt-accent-surface: #eceeec;
+  --yt-secondary: #f0fdfa;
+  --yt-secondary-foreground: #00796b;
+  --yt-border: #e1e3e1;
+  --yt-input: #bcc9c6;
+  --yt-ring: #009688;
+  --yt-destructive: #d4183d;
+  --yt-success: #3d8f6b;
+  --yt-hover: #eef1ef;
+  --yt-selected: #e0f2f1;
+  --yt-highlight: #e6f5f2;
+  --yt-text-soft: #3d4947;
+  --yt-text-faint: #9ca3af;
+
+  // --- Typography (Platform font stack; no Inter) ---
+  --mf-font:
+    "HarmonyOS Sans SC", "PingFang SC", "Noto Sans SC", "Microsoft YaHei",
+    system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mf-font-mono:
+    "JetBrains Mono", "SF Mono", "Cascadia Code", ui-monospace, menlo, consolas,
+    monospace;
+  --font-family: var(--mf-font);
+  --heading-font-family: var(--mf-font);
+  --d-font-family: var(--mf-font);
+  --mf-text-2xs: 11px;
+  --mf-text-xs: 12px;
+  --mf-text-sm: 13px;
+  --mf-text-md: 14px;
+  --mf-text-base: 15px;
+  --mf-text-lg: 17px;
+  --mf-text-xl: 20px;
+  --mf-text-2xl: 24px;
+  --mf-text-3xl: 30px;
+  --mf-text-4xl: 40px;
+  --mf-text-5xl: 52px;
+  --mf-leading-tight: 1.18;
+  --mf-leading-snug: 1.34;
+  --mf-leading-normal: 1.55;
+  --mf-leading-relaxed: 1.7;
+  --mf-tracking-tight: -0.022em;
+  --mf-tracking-snug: -0.013em;
+  --mf-tracking-normal: -0.006em;
+  --mf-weight-normal: 400;
+  --mf-weight-medium: 500;
+  --mf-weight-semibold: 600;
+  --mf-weight-bold: 700;
+
+  // --- Spacing ---
+  --mf-space-1: 4px;
+  --mf-space-2: 8px;
+  --mf-space-3: 12px;
+  --mf-space-4: 16px;
+  --mf-space-5: 20px;
+  --mf-space-6: 24px;
+  --mf-space-8: 32px;
+  --mf-space-10: 40px;
+  --mf-space-12: 48px;
+  --mf-space-16: 64px;
+  --mf-space-20: 80px;
+
+  // --- Radius (Platform --radius 0.75rem ≈ 12px; scale via ui_radius) ---
+  --mf-radius-scale: #{$ui_radius};
+  --mf-radius-xs: calc(6px * var(--mf-radius-scale));
+  --mf-radius-sm: calc(8px * var(--mf-radius-scale));
+  --mf-radius-md: calc(10px * var(--mf-radius-scale));
+  --mf-radius-lg: calc(12px * var(--mf-radius-scale));
+  --mf-radius-xl: calc(16px * var(--mf-radius-scale));
+  --mf-radius-2xl: calc(20px * var(--mf-radius-scale));
+  --mf-radius-pill: 999px;
+
+  // --- Motion (Platform motion tokens) ---
+  --mf-ease: cubic-bezier(0.2, 0, 0, 1);
+  --mf-ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --mf-dur-fast: 120ms;
+  --mf-dur: 200ms;
+  --mf-dur-slow: 320ms;
+  --mf-content-width: #{$content_max_width}px;
+
+  // --- Surfaces mapped to Platform light palette ---
+  // Prefer explicit YourTJ colors over pure light-dark mixes so the light
+  // theme matches Platform even when Discourse secondary/primary differ.
+  --mf-surface: var(--yt-popover);
+  --mf-surface-elevated: var(--yt-popover);
+  --mf-app-bg: var(--yt-background);
+  --mf-surface-2: var(--yt-card);
+  --mf-surface-3: var(--yt-muted);
+  --mf-fill-hover: var(--yt-hover);
+  --mf-fill-active: color-mix(in srgb, var(--yt-primary) 12%, var(--yt-hover));
+  --mf-fill-selected: var(--yt-selected);
+  --mf-hairline: color-mix(in srgb, var(--yt-border) 88%, transparent);
+  --mf-hairline-strong: var(--yt-border);
+  --mf-ink: var(--yt-foreground);
+  --mf-ink-2: var(--yt-text-soft);
+  --mf-ink-3: var(--yt-muted-foreground);
+  --mf-ink-faint: var(--yt-text-faint);
+  --mf-accent: var(--yt-primary);
+  --mf-accent-hover: color-mix(in srgb, var(--yt-primary) 88%, #000);
+  --mf-accent-press: color-mix(in srgb, var(--yt-primary) 78%, #000);
+  --mf-accent-fg: var(--yt-primary-foreground);
+  --mf-accent-tint: color-mix(in srgb, var(--yt-primary) 14%, transparent);
+  --mf-accent-tint-soft: color-mix(in srgb, var(--yt-primary) 8%, transparent);
+  --mf-accent-line: color-mix(in srgb, var(--yt-primary) 28%, transparent);
+  --mf-panel: var(--yt-card);
+  --mf-panel-strong: var(--yt-muted);
+  --mf-panel-hover: var(--yt-hover);
+  --mf-success: var(--yt-success);
+  --mf-success-tint: color-mix(in srgb, var(--yt-success) 14%, transparent);
+  --mf-danger: var(--yt-destructive);
+  --mf-danger-tint: color-mix(in srgb, var(--yt-destructive) 14%, transparent);
+  --mf-danger-hover: color-mix(in srgb, var(--yt-destructive) 86%, #000);
+  --mf-warning: #c9a227;
+  --mf-love: var(--yt-destructive);
+
+  // Platform uses near-flat elevation: 1px border + light hover, not heavy shadow
+  --shadow-card: none;
+  --shadow-header: none;
+  --shadow-composer: 0 -8px 28px rgb(25 28 27 / 8%);
+  --shadow-dropdown: 0 8px 24px rgb(25 28 27 / 10%);
+  --shadow-menu-panel: 0 10px 28px rgb(25 28 27 / 10%);
+  --shadow-modal: 0 16px 48px rgb(25 28 27 / 14%);
+  --shadow-focus: 0 0 0 3px color-mix(in srgb, var(--yt-ring) 45%, transparent);
+  --shadow-focus-danger: 0 0 0 3px var(--mf-danger-tint);
+  --d-border-radius: var(--mf-radius-md);
+  --d-border-radius-large: var(--mf-radius-lg);
+  --d-tag-border-radius: var(--mf-radius-pill);
+  --d-tag-font-size: var(--mf-text-sm);
+  --token-radius-normal: var(--mf-radius-md);
+  --category-badge-border-radius: var(--mf-radius-xs);
+  --content-border-color: var(--yt-border);
+  --table-border-color: var(--yt-border);
+  --primary-low: var(--mf-hairline-strong);
+  --d-selected: var(--mf-fill-selected);
+  --d-selected-text-color: var(--mf-accent);
+  --d-hover: var(--mf-fill-hover);
+  --d-content-background: var(--mf-app-bg);
+  --d-font-family--monospace: var(--mf-font-mono);
+  --d-category-border-accent-width: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --mf-dur-fast: 0ms;
+    --mf-dur: 0ms;
+    --mf-dur-slow: 0ms;
+  }
+}
+
+@if $accent_color != "" {
+  :root {
+    --mf-accent: #{$accent_color};
+    --yt-primary: #{$accent_color};
+  }
+}

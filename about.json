@@ -1,0 +1,35 @@
+{
+  "name": "YourTongji Theme",
+  "component": false,
+  "about_url": "https://github.com/YourTongji/discourse-yourtongji-theme",
+  "license_url": "https://github.com/YourTongji/discourse-yourtongji-theme/blob/main/LICENSE",
+  "learn_more": "https://github.com/YourTongji/discourse-yourtongji-theme#readme",
+  "authors": "YourTongji",
+  "theme_version": "1.0.0",
+  "minimum_discourse_version": "3.3.0",
+  "maximum_discourse_version": null,
+  "assets": {
+    "icon": "assets/icon.png",
+    "favicon": "assets/favicon.png"
+  },
+  "modifiers": {
+    "serialize_topic_excerpts": true,
+    "svg_icons": ["arrow-right", "fire", "magnifying-glass", "plus", "users"]
+  },
+  "color_schemes": {
+    "YourTongji Light": {
+      "primary": "191c1b",
+      "secondary": "f8faf8",
+      "tertiary": "009688",
+      "quaternary": "009688",
+      "header_background": "ffffff",
+      "header_primary": "191c1b",
+      "highlight": "e6f5f2",
+      "selected": "e0f2f1",
+      "hover": "eef1ef",
+      "danger": "d4183d",
+      "success": "3d8f6b",
+      "love": "d4183d"
+    }
+  }
+}
