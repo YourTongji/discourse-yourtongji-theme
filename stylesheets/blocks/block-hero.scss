@@ -20,6 +20,7 @@ body.welcome-banner--visible .above-main-container-outlet {
     align-items: center;
     width: 100%;
     max-width: 560px;
+
     /* Fixed height (not min-height) so align-self: stretch on the input has
        a definite target and the text centers with the icon */
     height: 48px;
