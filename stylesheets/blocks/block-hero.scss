@@ -56,8 +56,10 @@ body.welcome-banner--visible .above-main-container-outlet {
       min-width: 0;
 
       /* Stretch to fill the field height so the text sits on the same
-         center line as the absolutely-positioned search icon */
+         center line as the absolutely-positioned search icon; min-height: 0
+         is required to override core's 42px input min-height */
       align-self: stretch;
+      min-height: 0;
       height: auto;
       padding: 0;
       color: var(--mf-ink);
