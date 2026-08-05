@@ -289,7 +289,8 @@
     align-self: center;
     display: inline-flex;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
+    column-gap: 6px;
     padding: 0 !important;
     min-height: 0 !important;
     height: auto;
@@ -310,6 +311,9 @@
       height: auto !important;
       display: inline-flex;
       align-items: center;
+      gap: 0;
+      margin: 0;
+      line-height: 1.2;
     }
   }
 
@@ -318,9 +322,12 @@
   .topic-list-data.activity::before,
   .num.activity::before {
     content: "";
+    display: block;
     width: 14px;
     height: 14px;
     flex: 0 0 auto;
+    margin: 0;
+    margin-inline-end: 2px;
     background: currentcolor;
     mask: var(--mf-ic) center / 14px 14px no-repeat;
   }
@@ -979,11 +986,14 @@ a.discourse-tag.box,
 .desktop-view .list-container .topic-list-item.selected,
 .mobile-view .list-container .topic-list .topic-list-item,
 .list-container .topic-list .topic-list-item {
+  /* Avatar | title stack spanning metrics | posts | activity */
   display: grid !important;
-  grid-template-columns: 40px minmax(0, 1fr) !important;
+
+  /* posters | posts metric | activity metric | leftover */
+  grid-template-columns: 40px max-content max-content minmax(0, 1fr) !important;
   grid-template-rows: auto auto !important;
   column-gap: 12px !important;
-  row-gap: 8px !important;
+  row-gap: 10px !important;
   align-items: start !important;
   margin: 0 0 12px !important;
   padding: 16px !important;
@@ -1051,13 +1061,16 @@ a.discourse-tag.box,
   }
 
   .main-link {
-    grid-column: 2 !important;
+    grid-column: 2 / -1 !important;
     grid-row: 1 !important;
     min-width: 0 !important;
     display: flex !important;
     flex-direction: column !important;
     gap: 6px !important;
-    padding: 0 !important;
+    padding: 0 0 10px !important;
+    margin: 0 !important;
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--yt-border) 70%, transparent) !important;
 
     a.title {
       font-size: 17px !important;
@@ -1079,37 +1092,149 @@ a.discourse-tag.box,
     line-height: 1.6 !important;
   }
 
-  .num.posts-map,
-  .num.views,
-  .activity,
-  .topic-item-stats {
-    grid-column: 2 !important;
-    grid-row: 2 !important;
-    justify-self: start !important;
-    align-self: center !important;
-    margin-top: 4px !important;
-    padding-top: 10px !important;
-    border-top: 1px solid color-mix(in srgb, var(--yt-border) 70%, transparent) !important;
-    color: var(--mf-ink-3) !important;
-    font-size: 12px !important;
-  }
-
+  /* Hide non-platform metrics; keep posts + activity as action bar */
   .num.views,
   .num.likes {
     display: none !important;
   }
 
+  /*
+   * Critical: do NOT put posts-map and activity in the same grid cell.
+   * Shared cell stacking made the clock/reply icons collide with "0小时".
+   */
+
   .num.posts-map {
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+    justify-self: start !important;
+    align-self: center !important;
     display: inline-flex !important;
     align-items: center !important;
     gap: 6px !important;
-    margin-right: 16px !important;
+    column-gap: 6px !important;
+    width: auto !important;
+    max-width: max-content !important;
+    margin: 0 !important;
+    margin-inline-end: 0 !important;
+    padding: 2px 0 0 !important;
+    border-top: 0 !important;
+    color: var(--mf-ink-3) !important;
+    font-size: 12px !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+
+    &::before {
+      content: "" !important;
+      display: block !important;
+      flex: 0 0 14px !important;
+      width: 14px !important;
+      height: 14px !important;
+      margin: 0 !important;
+      background: currentcolor !important;
+      mask: var(--mf-ic) center / 14px 14px no-repeat !important;
+    }
+
+    a,
+    .badge-posts,
+    .number {
+      display: inline-flex !important;
+      align-items: center !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      color: inherit !important;
+      font-size: inherit !important;
+      line-height: 1.2 !important;
+    }
   }
 
-  .activity {
+  .activity,
+  .num.activity,
+  td.activity,
+  .topic-list-data.activity {
+    grid-column: 3 !important;
+    grid-row: 2 !important;
+    justify-self: start !important;
+    align-self: center !important;
     display: inline-flex !important;
     align-items: center !important;
     gap: 6px !important;
+    column-gap: 6px !important;
+    width: auto !important;
+    max-width: max-content !important;
+    margin: 0 !important;
+    padding: 2px 0 0 !important;
+    border-top: 0 !important;
+    color: var(--mf-ink-3) !important;
+    font-size: 12px !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+
+    &::before {
+      content: "" !important;
+      display: block !important;
+      flex: 0 0 14px !important;
+      width: 14px !important;
+      height: 14px !important;
+      margin: 0 !important;
+      background: currentcolor !important;
+      mask: var(--mf-ic) center / 14px 14px no-repeat !important;
+    }
+
+    a,
+    .post-activity,
+    .heat-link,
+    .number,
+    .relative-date,
+    .age,
+    span {
+      display: inline-flex !important;
+      align-items: center !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      color: inherit !important;
+      font-size: inherit !important;
+      line-height: 1.2 !important;
+      letter-spacing: 0 !important;
+    }
+
+    /* Discourse heat/age sometimes injects its own icon — drop duplicates */
+    .d-icon,
+    svg.fa,
+    .age.activity::before,
+    .relative-date::before,
+    .post-activity::before {
+      display: none !important;
+      content: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+  }
+
+  /* Mobile metadata stats row (single-td layout) */
+  .topic-item-stats {
+    grid-column: 2 / -1 !important;
+    grid-row: 2 !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 10px 14px !important;
+    width: 100% !important;
+    margin: 4px 0 0 !important;
+    padding: 10px 0 0 !important;
+    border-top: 1px solid color-mix(in srgb, var(--yt-border) 70%, transparent) !important;
+    color: var(--mf-ink-3) !important;
+    font-size: 12px !important;
+
+    .activity,
+    .num.activity,
+    .posts-map,
+    .num.posts-map {
+      grid-column: auto !important;
+      grid-row: auto !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border-top: 0 !important;
+    }
   }
 }
 

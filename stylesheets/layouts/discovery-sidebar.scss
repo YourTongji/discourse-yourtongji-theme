@@ -76,6 +76,13 @@
     > div:not(.yt-discovery-chrome, :has(> .yt-discovery-chrome)) {
     grid-column: 1;
   }
+
+  /* Prevent empty promoted wrappers from painting ghost gray tracks */
+  body:has(.yt-info-rail) .list-container > .ember-view:empty,
+  body:has(.yt-info-rail) .list-container > div:empty,
+  body:has(.yt-info-rail) .yt-discovery-chrome:empty {
+    display: none !important;
+  }
 }
 
 @media (width <= 1099px) {
@@ -107,4 +114,56 @@
   border: 0;
   padding: 0;
   margin: 0;
+}
+
+/* End-of-list / loading ghosts under the topic feed */
+.list-container {
+  .topic-list-bottom:empty,
+  .footer-message:empty,
+  .loading-container:empty,
+  .spinner:empty,
+  .placeholder-animation,
+  .preloader:empty,
+  .ember-view.loading-container:not(.visible) {
+    display: none !important;
+    min-height: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .topic-list-bottom {
+    margin-top: var(--mf-space-4);
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+
+    /* Hide barren wrappers that still paint a gray pill */
+    > div:empty,
+    > span:empty,
+    > p:empty {
+      display: none !important;
+    }
+
+    .footer-message {
+      color: var(--mf-ink-3);
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
+      min-height: 0;
+    }
+  }
+}
+
+/* Catch residual skeleton bars painted as rounded gray strips */
+.list-container .placeholder-animation,
+.list-container [class*="skeleton"],
+.list-container [class*="Placeholder"],
+#main-outlet .placeholder-animation {
+  display: none !important;
+  background: transparent !important;
+  min-height: 0 !important;
 }

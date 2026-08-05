@@ -66,3 +66,17 @@ body.has-sidebar-page #main-outlet-wrapper {
 div[class*="theme-error"]:empty {
   display: none;
 }
+
+/* Extra safety: bare gray pills / empty chrome under discovery lists */
+.list-container > .ember-view:not(:has(*), [class*="topic"]),
+.list-container .loading-container:not(.visible),
+.list-container .spinner-container:empty,
+.topic-list-bottom > .ember-view:empty {
+  display: none !important;
+  min-height: 0 !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
