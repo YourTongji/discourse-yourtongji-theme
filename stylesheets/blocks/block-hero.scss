@@ -54,7 +54,10 @@ body.welcome-banner--visible .above-main-container-outlet {
     input {
       flex: 1;
       min-width: 0;
-      height: 100%;
+      /* Stretch to fill the field height so the text sits on the same
+         center line as the absolutely-positioned search icon */
+      align-self: stretch;
+      height: auto;
       padding: 0;
       color: var(--mf-ink);
       font-size: var(--mf-text-base);
