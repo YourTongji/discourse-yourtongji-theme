@@ -21,8 +21,8 @@ body.welcome-banner--visible .above-main-container-outlet {
     width: 100%;
     max-width: 560px;
 
-    /* Fixed height (not min-height) so align-self: stretch on the input has
-       a definite target and the text centers with the icon */
+    /* Fixed height (not min-height) so height: 100% on the input has a
+       definite reference and the text centers with the icon */
     height: 48px;
     margin-inline: auto;
     padding: 0 var(--mf-space-4) 0 40px;
@@ -58,12 +58,12 @@ body.welcome-banner--visible .above-main-container-outlet {
       flex: 1;
       min-width: 0;
 
-      /* Stretch to fill the field height so the text sits on the same
-         center line as the absolutely-positioned search icon; min-height: 0
-         is required to override core's 42px input min-height */
-      align-self: stretch;
+      /* height: 100% (not stretch — inputs are replaced elements, stretch
+         does not apply) fills the fixed-height field so the text sits on
+         the same center line as the absolutely-positioned search icon;
+         min-height: 0 overrides core's 42px input min-height */
+      height: 100%;
       min-height: 0;
-      height: auto;
       padding: 0;
       color: var(--mf-ink);
       font-size: var(--mf-text-base);
