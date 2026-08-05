@@ -81,3 +81,20 @@
 .below-footer-outlet {
   background: var(--mf-app-bg);
 }
+
+/* Mobile footer: tighten spacing so columns stack without overflow */
+@include viewport.until(md) {
+  .mf-footer {
+    margin-top: var(--mf-space-10);
+    padding: var(--mf-space-8) var(--mf-space-4) var(--mf-space-8);
+
+    &__inner {
+      gap: var(--mf-space-6);
+    }
+
+    &__brand {
+      max-width: none;
+      width: 100%;
+    }
+  }
+}
